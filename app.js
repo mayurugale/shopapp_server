@@ -1,15 +1,17 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 const connectDB = require('./config/dbconnect');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const customerRoutes = require('./routes/Customer');
 
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const customerRoutes = require('./routes/Customer');
 
 var app = express();
 

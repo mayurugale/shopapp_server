@@ -49,7 +49,10 @@ const updateCustomer = async (req, res) => {
 // Delete a customer by ID
 const deleteCustomer = async (req, res) => {
   try {
-    const customer = await Customer.findByIdAndDelete(req.params.id);
+    const customer = await Customer.findByIdAndUpdate(req.params.id, {isDeleted:true}, {
+      new: true,
+      runValidators: true,
+    });
     if (!customer) return res.status(404).send({ message: 'Customer not found' });
     res.send({ message: 'Customer deleted successfully' });
   } catch (error) {
