@@ -38,7 +38,7 @@ const customerSchema = new mongoose.Schema({
         zipCode: {
             type: String,
             required: true,
-            match: /^\d{5}$/ // Validates a 5-digit zip code
+            match: /^\d{6}$/ // Validates a 5-digit zip code
         }
     },
     idProof: {
