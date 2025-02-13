@@ -1,0 +1,26 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: mayur1
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: shop-app
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: shopapp
+
+frameworkversion: 1
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  memorySize: 2048
+  stage: dev
+  timeout: 15
+  region: us-east-1
+
+functions:
+  hello:
+    handler: handler.hello
+    configValidationMode: off
+    Environment:
+      - DATABASE_URL: mongodb+srv://mayur:Mayur%40517@shopapp.iemur.mongodb.net/ShopDB
+    events:
+      - http: ANY /{proxy+}
+      - http: ANY /
