@@ -14,12 +14,14 @@ const addCustomer = async (req, res) => {
 // Get all customers
 const getAllCustomers = async (req, res) => {
   try {
-    const customers = await Customer.find();
+    const { query = {}, projection = {} } = req.body;
+    const customers = await Customer.find(query, projection);
     res.send(customers);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 };
+
 
 // Get a customer by ID
 const getCustomerById = async (req, res) => {

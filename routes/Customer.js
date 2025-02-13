@@ -1,4 +1,5 @@
 const express = require('express');
+const { authenticateToken } = require('../middleware/authMiddleware');
 const {
   addCustomer,
   getAllCustomers,
@@ -9,10 +10,10 @@ const {
 
 const router = express.Router();
 
-router.post('/', addCustomer);
-router.get('/', getAllCustomers);
-router.get('/:id', getCustomerById);
-router.put('/:id', updateCustomer);
-router.delete('/:id', deleteCustomer);
+router.post('/',authenticateToken, addCustomer);
+router.get('/',authenticateToken, getAllCustomers);
+router.get('/:id',authenticateToken, getCustomerById);
+router.put('/:id',authenticateToken, updateCustomer);
+router.delete('/:id',authenticateToken, deleteCustomer);
 
 module.exports = router;
